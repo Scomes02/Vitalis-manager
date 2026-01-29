@@ -7,20 +7,24 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Past;
+import jakarta.validation.constraints.Pattern;
 
 
 @Entity
 @Table(name = "pacientes")
 
 public class Paciente {
-
+    
+	
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String nombre;
     private String apellido;
+    
     private String dni;
+    
     private LocalDate fechaNacimiento;
 	public Long getId() {
 		return id;

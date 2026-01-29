@@ -1,8 +1,9 @@
 package com.vitalis.manager.mapper;
 
-import com.vitalis.manager.dto.request.PacienteRequestDto;
-import com.vitalis.manager.dto.response.PacienteResponseDto;
 import com.vitalis.manager.entity.Paciente;
+import com.vitalis.manager.requestDto.PacienteRequestDto;
+import com.vitalis.manager.responseDto.PacienteResponseDto;
+
 import org.springframework.stereotype.Component;
 
 @Component

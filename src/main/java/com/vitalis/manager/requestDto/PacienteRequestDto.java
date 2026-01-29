@@ -1,20 +1,23 @@
-package com.vitalis.manager.dto.response;
+package com.vitalis.manager.requestDto;
 
 import java.time.LocalDate;
 
-public class PacienteResponseDto {
+import jakarta.validation.constraints.Past;
+import jakarta.validation.constraints.Pattern;
 
-	private long id; 
-	private String nombre; 
-	private String apellido; 
+public class PacienteRequestDto {
+
+	private String nombre;
+	private String apellido;
+	
+	@Pattern(regexp = "^[0-9]{7,8}$", message = "El DNI debe ser numérico y tener entre 7 y 8 dígitos")
 	private String dni; 
+	
+	@Past(message = "La fecha debe ser anterior a la fecha actual")
 	private LocalDate fechaNacimiento;
-	public long getId() {
-		return id;
-	}
-	public void setId(long id) {
-		this.id = id;
-	}
+	
+	
+	
 	public String getNombre() {
 		return nombre;
 	}

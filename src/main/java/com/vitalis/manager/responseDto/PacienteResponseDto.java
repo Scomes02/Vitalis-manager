@@ -1,13 +1,24 @@
-package com.vitalis.manager.dto.request;
+package com.vitalis.manager.responseDto;
 
 import java.time.LocalDate;
 
-public class PacienteRequestDto {
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
-	private String nombre;
-	private String apellido;
+@JsonPropertyOrder({"id","apellido","nombre","dni","fechaNacimiento"})
+
+public class PacienteResponseDto {
+
+	private long id; 
+	private String nombre; 
+	private String apellido; 
 	private String dni; 
 	private LocalDate fechaNacimiento;
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
+	}
 	public String getNombre() {
 		return nombre;
 	}
