@@ -19,6 +19,9 @@ public class PacienteMapper {
         paciente.setNombre(dto.getNombre());
         paciente.setApellido(dto.getApellido());
         paciente.setDni(dto.getDni());
+        paciente.setCel(dto.getCel());
+        paciente.setDomicilio(dto.getDomicilio());
+        paciente.setObraSocial(dto.getObraSocial());
         paciente.setFechaNacimiento(dto.getFechaNacimiento());
 
         return paciente;
@@ -35,6 +38,9 @@ public class PacienteMapper {
         dto.setNombre(entity.getNombre());
         dto.setApellido(entity.getApellido());
         dto.setDni(entity.getDni());
+        dto.setCel(entity.getCel());
+        dto.setObraSocial(entity.getObraSocial());
+        dto.setDomicilio(entity.getDomicilio());
         dto.setFechaNacimiento(entity.getFechaNacimiento());
 
 

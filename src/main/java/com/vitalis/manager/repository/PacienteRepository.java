@@ -13,6 +13,9 @@ import com.vitalis.manager.entity.Paciente;
 public interface PacienteRepository extends JpaRepository<Paciente, Long> {
 
     Optional<Paciente> findByDni(String dni);
+    Optional<Paciente> findByDomicilio(String domicilio);
+    Optional<Paciente> findByCel(String cel);
+    Optional<Paciente> findByObraSocial(String obraSocial);
 
 }
 

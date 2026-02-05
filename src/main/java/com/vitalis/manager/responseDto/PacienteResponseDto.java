@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
-@JsonPropertyOrder({"id","apellido","nombre","dni","fechaNacimiento"})
+@JsonPropertyOrder({"id","apellido","nombre","dni","cel","domicilio","obraSocial","fechaNacimiento"})
 
 public class PacienteResponseDto {
 
@@ -12,6 +12,27 @@ public class PacienteResponseDto {
 	private String nombre; 
 	private String apellido; 
 	private String dni; 
+	private String cel;
+	private String obraSocial;
+	
+	
+
+	public String getObraSocial() {
+		return obraSocial;
+	}
+	public void setObraSocial(String obraSocial) {
+		this.obraSocial = obraSocial;
+	}
+	private String domicilio;
+	
+	
+	
+	public String getDomicilio() {
+		return domicilio;
+	}
+	public void setDomicilio(String domicilio) {
+		this.domicilio = domicilio;
+	}
 	private LocalDate fechaNacimiento;
 	public long getId() {
 		return id;
@@ -36,6 +57,13 @@ public class PacienteResponseDto {
 	}
 	public void setDni(String dni) {
 		this.dni = dni;
+	}
+	
+	public String getCel() {
+		return cel;
+	}
+	public void setCel(String cel) {
+		this.cel = cel;
 	}
 	public LocalDate getFechaNacimiento() {
 		return fechaNacimiento;

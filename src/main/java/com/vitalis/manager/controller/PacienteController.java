@@ -28,9 +28,12 @@ public class PacienteController {
     @GetMapping
     public ResponseEntity<ApiResponseSuccess<List<PacienteResponseDto>>> obtenerTodos(
             @RequestParam(required = false) Long id,
-            @RequestParam(required = false) String dni) {
+            @RequestParam(required = false) String dni,
+            @RequestParam(required = false) String domicilio,
+            @RequestParam(required = false) String cel,
+    		@RequestParam(required = false) String obraSocial ){
 
-        List<PacienteResponseDto> data = pacienteService.listarTodos(id, dni);
+        List<PacienteResponseDto> data = pacienteService.listarTodos(id, dni, domicilio,cel, obraSocial);
 
         return ResponseEntity.ok(
                 new ApiResponseSuccess<>("Lista de pacientes obtenida", data)
@@ -40,6 +43,11 @@ public class PacienteController {
     @GetMapping("/dni/{dni}")
     public ResponseEntity<PacienteResponseDto> obtenerPorDni(@PathVariable String dni) {
         return ResponseEntity.ok(pacienteService.buscarPorDni(dni));
+    }
+    
+    @GetMapping("/cel/{cel}")
+    public ResponseEntity<PacienteResponseDto> obtenerPorCel(@PathVariable String cel) {
+        return ResponseEntity.ok(pacienteService.buscarPorCel(cel));
     }
 
     @PostMapping
