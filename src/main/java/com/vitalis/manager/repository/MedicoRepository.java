@@ -2,6 +2,8 @@ package com.vitalis.manager.repository;
 
 import com.vitalis.manager.entity.Medico;
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -29,4 +31,7 @@ public interface MedicoRepository extends JpaRepository<Medico, Long> {
     List<Medico>findByDni(String dni);
     
     List<Medico>findByEmail(String email);
+    
+ // Método mágico: Busca el médico cuyo campo 'usuario' tenga el ID que le pasamos
+    Optional<Medico> findByUsuarioId(Long usuarioId);
 }

@@ -16,6 +16,10 @@ public class Medico {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
+    @OneToOne
+    @JoinColumn(name = "usuario_id", referencedColumnName = "id")
+    private Usuario usuario;
+    
     // Campos de la tabla. 
     // NOTA: Las validaciones (@NotBlank, @Size) aquí funcionan como restricciones de base de datos.
     // Si fallan aquí, lanzan error 500. Para error 400, recordá tenerlas también en el DTO.
@@ -93,5 +97,10 @@ public class Medico {
 		this.telefono = telefono;
 	}
     
-    
+    public Usuario getUsuario() {
+    	return usuario; 
+    }
+    public void setUsuario(Usuario usuario) {
+    	this.usuario = usuario; 
+    }
 }

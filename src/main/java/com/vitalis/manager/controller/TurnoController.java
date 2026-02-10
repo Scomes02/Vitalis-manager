@@ -48,4 +48,26 @@ public class TurnoController {
         turnoService.eliminar(id);
         return ResponseEntity.ok(new ApiResponseSuccess<>("Turno eliminado con éxito", null));
     }
+    
+    // URL FINAL: GET http://localhost:8080/api/turnos/medico/1/proximos
+    @GetMapping("/medico/{medicoId}/proximos")
+    public ResponseEntity<ApiResponseSuccess<List<TurnoResponseDto>>> obtenerProximosPorMedico(
+            @PathVariable Long medicoId
+    ) {
+        List<TurnoResponseDto> data = turnoService.buscarProximosDelMedico(medicoId);
+        
+        return ResponseEntity.ok(
+            new ApiResponseSuccess<>("Agenda futura del médico obtenida", data)
+        );
+    }
+    
+ // GET http://localhost:8080/api/turnos/usuario/{usuarioId}
+    @GetMapping("/usuario/{usuarioId}")
+    public ResponseEntity<ApiResponseSuccess<List<TurnoResponseDto>>> obtenerPorUsuario(@PathVariable Long usuarioId) {
+        List<TurnoResponseDto> turnos = turnoService.obtenerTurnosPorUsuario(usuarioId);
+        
+        return ResponseEntity.ok(
+            new ApiResponseSuccess<>("Turnos del usuario encontrados", turnos)
+        );
+    }
 }

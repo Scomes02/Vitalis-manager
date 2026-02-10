@@ -16,6 +16,9 @@ public class TurnoMapper {
         entity.setFechaHora(dto.getFechaHora());
         entity.setMotivo(dto.getMotivo());
         
+        // Nota: Los objetos 'Medico' y 'Paciente' se suelen setear en el Service 
+        // buscando por ID, por eso acá solo mapeamos los datos básicos.
+        
         return entity;
     }
 
@@ -27,6 +30,22 @@ public class TurnoMapper {
         dto.setId(entity.getId());
         dto.setFechaHora(entity.getFechaHora());
         dto.setMotivo(entity.getMotivo());
+
+        // --- CORRECCIÓN AQUÍ ---
+        // Validamos que el médico no sea null para evitar errores (NullPointerException)
+        if (entity.getMedico() != null) {
+            // Concatenamos Nombre + espacio + Apellido
+            String nombreCompletoMedico = entity.getMedico().getNombre() + " " + entity.getMedico().getApellido();
+            dto.setNombreMedico(nombreCompletoMedico);
+        }
+
+        // Validamos que el paciente no sea null
+        if (entity.getPaciente() != null) {
+            // Concatenamos Nombre + espacio + Apellido
+            String nombreCompletoPaciente = entity.getPaciente().getNombre() + " " + entity.getPaciente().getApellido();
+            dto.setNombrePaciente(nombreCompletoPaciente);
+        }
+        // -----------------------
 
         return dto;
     }
