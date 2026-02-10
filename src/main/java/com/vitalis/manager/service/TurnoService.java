@@ -13,6 +13,7 @@ import com.vitalis.manager.exception.ResourceNotFoundException; // IMPORTANTE
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -83,5 +84,30 @@ public class TurnoService {
             throw new ResourceNotFoundException("No se puede eliminar: Turno no encontrado con ID: " + id);
         }
         turnoRepository.deleteById(id);
+    }
+    
+    public List<TurnoResponseDto> buscarProximosDelMedico(Long medicoId){
+    	List<Turno> turnos = turnoRepository.findByMedicoIdAndFechaHoraAfterOrderByFechaHoraAsc(
+                medicoId, 
+                LocalDateTime.now() // <--- El punto de corte es "AHORA"
+        );
+    	return turnos.stream()
+                .map(turnoMapper::toResponse)
+                .collect(Collectors.toList());
+    }
+    
+    public List<TurnoResponseDto> obtenerTurnosPorUsuario(Long usuarioId) {
+        // 1. Buscamos si existe un médico con ese usuario
+        Medico medico = medicoRepository.findByUsuarioId(usuarioId)
+                .orElseThrow(() -> new RuntimeException("Este usuario no tiene un perfil de médico asignado."));
+
+        // 2. Si lo encontramos, usamos el ID del médico para buscar sus turnos (reusamos la lógica que ya tenías)
+        // Usamos LocalDateTime.now() para traer solo los futuros, o quitamos el filtro de fecha si querés todos.
+        return turnoRepository.findByMedicoIdAndFechaHoraAfterOrderByFechaHoraAsc(
+                medico.getId(), 
+                LocalDateTime.now()
+        ).stream()
+         .map(turnoMapper::toResponse)
+         .collect(Collectors.toList());
     }
 }
